@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bind.c                                          :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 11:17:09 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 20:29:49 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 20:45:45 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 20:54:28 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int								ft_bind(int sd, int port)
+void						loop_client(t_client *client)
 {
-	struct sockaddr_in			sockin;
+	int						type;
+	char					*line;
 
-	sockin.sin_family = FAMILY;
-	sockin.sin_port = htons(port);
-	sockin.sin_addr.s_addr = htonl(INADDR_ANY);
-	ft_bzero(&(sockin.sin_zero), 8);
-	if (bind(sd, (struct sockaddr *)&sockin, sizeof(struct sockaddr_in)) == -1)
-		return (ft_error("serveur", "ft_bind.c", 23));
-	return (0);
+	while (42)	
+	{
+		ft_putstr("$> ");
+		type = getnexttype_c(0, &line);
+		ft_putendl_fd(line, client->sd);
+		if (type == QUIT)
+			break ;
+	}
 }

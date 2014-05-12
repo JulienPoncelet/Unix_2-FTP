@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bind.c                                          :+:      :+:    :+:   */
+/*   ft_socket.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 11:17:09 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 20:29:49 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 10:44:31 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 20:18:41 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int								ft_bind(int sd, int port)
+int							ft_socket(void)
 {
-	struct sockaddr_in			sockin;
+	struct protoent			*proto;
+	int						sd;
 
-	sockin.sin_family = FAMILY;
-	sockin.sin_port = htons(port);
-	sockin.sin_addr.s_addr = htonl(INADDR_ANY);
-	ft_bzero(&(sockin.sin_zero), 8);
-	if (bind(sd, (struct sockaddr *)&sockin, sizeof(struct sockaddr_in)) == -1)
-		return (ft_error("serveur", "ft_bind.c", 23));
-	return (0);
+	proto = getprotobyname("tcp");
+	if (!proto)
+		return (ft_error("client", "ft_socket.c", 20));
+	sd = socket(DOMAIN, TYPE, proto->p_proto);
+	if (sd == -1)
+		return (ft_error("client", "ft_socket.c", 23));
+	return (sd);
 }

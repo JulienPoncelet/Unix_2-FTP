@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/11 20:14:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 18:35:56 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/12 20:52:42 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # include <sys/socket.h>
 # include <sys/types.h>
 # include <netinet/in.h>
+# include <arpa/inet.h>
 
 # define S_USAGE		"usage: ./serveur <port = 1024>"
+# define C_USAGE		"usage: ./client <addr> <port>"
 
 # define DOMAIN			PF_INET
 # define TYPE			SOCK_STREAM
@@ -43,8 +45,12 @@ typedef struct			s_serveur
 {
 	int					sd;
 	int					port;
-	int					cs;
 }						t_serveur;
+
+typedef struct			s_client
+{
+	int					sd;
+}						t_client;
 
 /*
 **						check_input.c
@@ -87,6 +93,7 @@ int						ft_accept(int sd);
 **						loop.c
 */
 
+
 void					loop(t_serveur *serveur);
 
 /*
@@ -100,6 +107,7 @@ void					ftp_son(int sson);
 */
 
 int						getnexttype(int sson, char ***av);
+int						getnexttype_c(int sson, char **av);
 int						get_type(char *cmd);
 
 /*
@@ -111,5 +119,24 @@ void					ftp_cd(int type);
 void					ftp_get(int type);
 void					ftp_put(int type);
 void					ftp_pwd(int type);
+
+/*
+**						t_client.c
+*/
+
+t_client				*init_client(char *addr, int port);
+void					end_client(t_client *client);
+
+/*
+**						ft_connect.c
+*/
+
+int						ft_connect(int sd, char *addr, int port);
+
+/*
+**						loop.c
+*/
+
+void					loop_client(t_client *client);
 
 #endif /* !FTP_H */

@@ -38,7 +38,13 @@ C_NAME = client
 C_DIRSRC = ./c_srcs/
 C_DIROBJ = ./c_obj/
 
-C_SRC = main.c
+C_SRC = main.c\
+		check_input.c\
+		t_client.c\
+		ft_socket.c\
+		ft_connect.c\
+		getnexttype.c\
+		loop.c
 
 C_OBJ = $(C_SRC:.c=.o)
 
