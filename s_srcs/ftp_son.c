@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ftp_son.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 15:49:50 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 17:07:17 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 18:35:56 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int							main(int ac, char **av)
+void							ftp_son(int sson)
 {
-	t_serveur				*serveur;
+	int							type;
+	char						**av;
+	int							i;
+	int							type_enum[TYPE_SIZE] = TYPE_ENUM;
+	void						(*type_fun[TYPE_SIZE])(int) = TYPE_FUN;
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
+	while (42)
 	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
+		type = getnexttype(sson, &av);
+		if (type == QUIT)
+			break ;
+		i = 0;
+		while (i < TYPE_SIZE)
+		{
+			if (type_enum[i] == type)
+				type_fun[i](type);
+			i++;
+		}
 	}
-	loop(serveur);
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	close(sson);
 }

@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 15:49:50 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 15:30:52 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 18:21:25 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int							main(int ac, char **av)
+void						loop(t_serveur *serveur)
 {
-	t_serveur				*serveur;
+	int						end;
+	int						sson;
+	pid_t					father;
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
+	end = 0;
+	while (!end)
 	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
+		if ((sson = ft_accept(serveur->sd)) == FT_ERROR)
+			ft_error("serveur", "loop.c", 23);
+		else
+		{
+			if ((father = fork()) == -1)
+			{
+				ft_error("serveur", "loop.c", 28);
+				return ;
+			}
+			if (!father)
+				ftp_son(sson);
+		}
 	}
-	loop(serveur);
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
 }

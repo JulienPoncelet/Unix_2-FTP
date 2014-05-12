@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 10:42:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 11:54:28 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/12 17:07:25 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,18 @@ t_serveur						*init_serveur(char **av)
 		ft_error("serveur", "t_serveur.c", 29);
 		return (NULL);
 	}
+	if (ft_listen(serveur->sd) == FT_ERROR)
+	{
+		ft_error("serveur", "t_serveur.c", 35);
+		return (NULL);
+	}
 	return (serveur);
 }
 
 int								end_serveur(t_serveur *serveur)
 {
 	if (close(serveur->sd) == -1)
-		return (ft_error("serveur", "t_serveur.c", 40));
+		ft_error("serveur", "t_serveur.c", 40);
 	free(serveur);
 	return (0);
 }

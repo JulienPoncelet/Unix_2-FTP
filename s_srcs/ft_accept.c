@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_accept.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 15:49:50 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 15:33:57 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 17:30:39 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int							main(int ac, char **av)
+int							ft_accept(int sd)
 {
-	t_serveur				*serveur;
+	int						cs;
+	struct sockaddr_in		csin;
+	unsigned int			clen;
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
+	if ((cs = accept(sd, (struct sockaddr *)&csin, &clen)) == -1)
 	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
+		ft_error("serveur", "ft_accept.c", 21);
+		return (FT_ERROR);
 	}
-	loop(serveur);
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (cs);
 }

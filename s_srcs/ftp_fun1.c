@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ftp_fun1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 15:49:50 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 18:22:07 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 18:23:05 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int							main(int ac, char **av)
+void						ftp_ls(int type)
 {
-	t_serveur				*serveur;
+	printf("%d\n", type);
+}
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
-	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
-	}
-	loop(serveur);
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+void						ftp_cd(int type)
+{
+	printf("%d\n", type);
+}
+
+void						ftp_get(int type)
+{
+	printf("%d\n", type);
+}
+
+void						ftp_put(int type)
+{
+	printf("%d\n", type);
+}
+
+void						ftp_pwd(int type)
+{
+	printf("%d\n", type);
 }
