@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 11:48:49 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 10:53:24 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 11:16:15 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ftp.h>
+#include <libft.h>
 
-int							main(int ac, char **av)
+int						ft_error(char *bin, char *file, int line)
 {
-	t_serveur				*serveur;
+	static int			tab = 0;
+	int					i;
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
-	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
-	}
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (i++ < tab)
+		ft_putchar('\t');
+	tab++;
+	ft_putstr(bin);
+	ft_putstr(": Error detected in file: ");
+	ft_putstr(file);
+	ft_putstr(" at line ");
+	ft_putnbrendl(line);
+	return (FT_ERROR);
 }

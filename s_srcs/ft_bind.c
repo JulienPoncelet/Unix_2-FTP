@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bind.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 11:48:49 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 11:17:09 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/12 11:59:40 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int							main(int ac, char **av)
+int								ft_bind(int sd, int port)
 {
-	t_serveur				*serveur;
+	struct sockaddr_in			sockin;
 
-	ac--;
-	av++;
-	if (check_input(ac) == FT_ERROR)
-		return (EXIT_FAILURE);
-	if (!(serveur = init_serveur(av)))
-	{
-		ft_error("serveur", "main.c", 23);
-		return (EXIT_FAILURE);
-	}
-	if (end_serveur(serveur) == FT_ERROR)
-	{
-		ft_error("serveur", "main.c", 28);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	sockin.sin_family = FAMILY;
+	sockin.sin_port = htons(port);
+	sockin.sin_addr.s_addr = INADDR_ANY;
+	ft_bzero(&(sockin.sin_zero), 8);
+	if (bind(sd, (struct sockaddr *)&sockin, sizeof(struct sockaddr_in)) == -1)
+		return (ft_error("serveur", "ft_bind.c", 23));
+	return (0);
 }

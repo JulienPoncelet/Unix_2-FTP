@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/02 14:57:52 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/12 10:55:45 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,8 @@ SRC = ft_memset.c\
 	  ft_ctabsub.c\
 	  ft_ctabjoin.c\
 	  ft_ctabaddtoindex.c\
-	  ft_getopt2.c
+	  ft_getopt2.c\
+	  ft_error.c
 
 OBJ = $(SRC:.c=.o)
 

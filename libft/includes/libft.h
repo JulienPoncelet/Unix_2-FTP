@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 15:49:51 by jponcele          #+#    #+#             */
-/*   Updated: 2014/04/28 14:29:47 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/12 11:34:29 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <libft_lst.h>
+
+# define FT_ERROR -42
 
 void		*ft_memset(void *to_set, int value, size_t len);
 void		ft_bzero(void *to_set, size_t len);
@@ -98,5 +100,7 @@ char		**ft_ctabsub(char **ctab, int start, size_t len);
 char		**ft_ctabjoin(char **ctab1, char **ctab2);
 char		**ft_ctabaddtoindex(char **ctab, char **to_add, int i, int j);
 int			ft_getopt(char **cmd, char **tab, char *valid_opt, char *error);
+
+int			ft_error(char *bin, char *file, int line);
 
 #endif

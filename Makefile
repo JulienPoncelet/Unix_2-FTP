@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/05 14:39:39 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/12 11:41:56 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ S_NAME = serveur
 S_DIRSRC = ./s_srcs/
 S_DIROBJ = ./s_obj/
 
-S_SRC = main.c
+S_SRC = main.c\
+		check_input.c\
+		t_serveur.c\
+		ft_socket.c\
+		ft_bind.c
 
 S_OBJ = $(S_SRC:.c=.o)
 
