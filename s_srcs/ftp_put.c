@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:32:09 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:52:04 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 int								ftp_put(int sson, char **pwd, char **av)
 {
+	char						*line;
+	char						*file;
 	int							fd;
-	char						buf[2];
-	int							ret;
 	char						*cat;
+	int							len;
 
-	if (!av[0] || !pwd)
-	{
-		ft_putnbrendl_fd(FT_ERROR, sson);
+	file = av[0];
+	if ((fd = open(ft_strjoin(file, "_put"), O_RDWR | O_CREAT, 0644)) < 0)
 		return (FT_ERROR);
-	}
-	if ((fd = open(av[0], O_RDWR, 0644)) < 0)
-	{
-		ft_putnbrendl_fd(FT_ERROR, sson);
-		return (FT_ERROR);
-	}
-	ft_putnbrendl_fd(0, sson);
-	cat = "";
-	while ((ret = read(fd, buf, 1)) > 0)
-	{
-		buf[ret] = 0;
-		cat = ft_strjoin(cat, buf);
-	}
-	ft_putnbrendl_fd(ft_strlen(cat), sson);
-	send(sson, cat, ft_strlen(cat), 0);
+	get_next_line(sson, &line);
+	len = ft_atoi(line);
+	cat = (char *)malloc(sizeof(char) * (len + 1));
+	recv(sson, cat, len, 0);
+	cat[len] = 0;
+	ft_putstr_fd(cat, fd);
 	return (0);
+	(void)pwd;
+}
+
+char							*get_file(char *line)
+{
+	char						**split;
+
+	split = ft_strsplit(line, " ");
+	return (split[1]);
 }

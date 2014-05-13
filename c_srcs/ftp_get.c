@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:44:26 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:45:27 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int								c_ftp_get(t_client *client)
 	if (ft_atoi(line) == FT_ERROR)
 		return (FT_ERROR);
 	file = get_file(client->line);
-	if ((fd = open(ft_strjoin(file, "_cpy"), O_RDWR | O_CREAT, 0644)) < 0)
+	if ((fd = open(ft_strjoin(file, "_get"), O_RDWR | O_CREAT, 0644)) < 0)
 		return (FT_ERROR);
 	get_next_line(client->sd, &line);
 	len = ft_atoi(line);

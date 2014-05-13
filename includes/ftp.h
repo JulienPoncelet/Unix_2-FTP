@@ -6,14 +6,12 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/11 20:14:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 15:27:04 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:55:20 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTP_H
 # define FTP_H
-
-#include <stdio.h>
 
 # include <libft.h>
 # include <get_next_line.h>
@@ -109,7 +107,6 @@ int						ft_accept(int sd);
 **						loop.c
 */
 
-
 void					loop(t_serveur *serveur);
 
 /*
@@ -177,4 +174,4 @@ int						c_ftp_get(t_client *client);
 int						c_ftp_put(t_client *client);
 int						c_ftp_pwd(t_client *client);
 
-#endif /* !FTP_H */
+#endif

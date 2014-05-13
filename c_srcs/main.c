@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/11 20:14:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 12:10:24 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:53:57 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int							main(int ac, char **av)
 	if (!(client = init_client(av[0], ft_atoi(av[1]))))
 	{
 		ft_error("client", "main.c", 23);
-		return (EXIT_FAILURE);	
+		return (EXIT_FAILURE);
 	}
 	loop_client(client);
 	end_client(client);

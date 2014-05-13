@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 20:45:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 15:24:58 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:53:31 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void						loop_client(t_client *client)
 	int						type;
 	char					*line;
 	int						i;
-	int						type_enum[TYPE_SIZE] = TYPE_ENUM;
-	int						(*type_fun2[TYPE_SIZE])(t_client *) = TYPE_FUN2;
+	static int				type_enum[TYPE_SIZE] = TYPE_ENUM;
+	static int				(*type_fun2[TYPE_SIZE])(t_client *) = TYPE_FUN2;
 
 	get_next_line(client->sd, &(client->pwd));
-	while (42)	
+	while (42)
 	{
 		print_prompt(client);
 		type = getnexttype_c(0, &line);
