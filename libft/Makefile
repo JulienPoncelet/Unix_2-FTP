@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/12 10:55:45 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/13 12:35:47 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC = ft_memset.c\
 	  ft_lstadd.c\
 	  ft_lstiter.c\
 	  ft_putnbrendl.c\
+	  ft_putnbrendl_fd.c\
 	  ft_lstaddend.c\
 	  ft_memjoin.c\
 	  free_string.c\

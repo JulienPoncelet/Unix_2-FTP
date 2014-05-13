@@ -6,13 +6,13 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 10:42:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 17:07:25 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 10:15:09 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-t_serveur						*init_serveur(char **av)
+t_serveur						*init_serveur(char **av, char **env)
 {
 	t_serveur					*serveur;
 
@@ -37,6 +37,7 @@ t_serveur						*init_serveur(char **av)
 		ft_error("serveur", "t_serveur.c", 35);
 		return (NULL);
 	}
+	serveur->pwd = ft_strdup(ft_getenv(env, "PWD="));
 	return (serveur);
 }
 
@@ -44,6 +45,7 @@ int								end_serveur(t_serveur *serveur)
 {
 	if (close(serveur->sd) == -1)
 		ft_error("serveur", "t_serveur.c", 40);
+	free(serveur->pwd);
 	free(serveur);
 	return (0);
 }

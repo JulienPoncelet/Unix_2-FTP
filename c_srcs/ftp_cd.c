@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_son.c                                          :+:      :+:    :+:   */
+/*   ftp_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 17:07:17 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 13:46:18 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/13 14:15:16 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-void					ftp_son(int sson, char *pwd)
+int								c_ftp_cd(t_client *client)
 {
-	int					type;
-	char				**av;
-	int					i;
-	int					type_enum[TYPE_SIZE] = TYPE_ENUM;
-	int					(*type_fun[TYPE_SIZE])(int, char **, char **) = TYPE_FUN;
+	char						*line;
+	int							ret;
 
-	send_pwd(sson, pwd);
-	while (42)
-	{
-		type = getnexttype(sson, &av);
-		if (type == QUIT)
-			break ;
-		i = 0;
-		while (i < TYPE_SIZE)
-		{
-			if (type_enum[i] == type)
-				type_fun[i](sson, &pwd, av);
-			i++;
-		}
-	}
-	close(sson);
+	get_next_line(client->sd, &line);
+	ret = ft_atoi(line);
+	if (ret != FT_ERROR)
+		client->pwd = line;
+	return ((ret == FT_ERROR) ? ret : 0);
 }

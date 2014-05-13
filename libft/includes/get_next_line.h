@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 10:56:58 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/02 14:26:34 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 11:59:40 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <libft.h>
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 1
 
 /*
 **	get_next_line.c

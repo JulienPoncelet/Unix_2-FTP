@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 10:53:24 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 11:16:15 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 13:46:46 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 int						ft_error(char *bin, char *file, int line)
 {
-	static int			tab = 0;
-	int					i;
-
-	i = 0;
-	while (i++ < tab)
-		ft_putchar('\t');
-	tab++;
 	ft_putstr(bin);
 	ft_putstr(": Error detected in file: ");
 	ft_putstr(file);

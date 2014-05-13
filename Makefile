@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/12 18:23:19 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/13 10:46:47 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,13 @@ S_SRC = main.c\
 		ft_accept.c\
 		loop.c\
 		ftp_son.c\
+		send_pwd.c\
 		getnexttype.c\
-		ftp_fun1.c
+		ftp_ls.c\
+		ftp_cd.c\
+		ftp_get.c\
+		ftp_put.c\
+		ftp_pwd.c
 
 S_OBJ = $(S_SRC:.c=.o)
 
@@ -44,7 +49,12 @@ C_SRC = main.c\
 		ft_socket.c\
 		ft_connect.c\
 		getnexttype.c\
-		loop.c
+		loop.c\
+		ftp_ls.c\
+		ftp_cd.c\
+		ftp_get.c\
+		ftp_put.c\
+		ftp_pwd.c
 
 C_OBJ = $(C_SRC:.c=.o)
 

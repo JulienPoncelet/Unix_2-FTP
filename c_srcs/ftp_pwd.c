@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_son.c                                          :+:      :+:    :+:   */
+/*   ftp_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 17:07:17 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 13:46:18 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/13 10:09:45 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/13 10:54:43 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-void					ftp_son(int sson, char *pwd)
+int								c_ftp_pwd(t_client *client)
 {
-	int					type;
-	char				**av;
-	int					i;
-	int					type_enum[TYPE_SIZE] = TYPE_ENUM;
-	int					(*type_fun[TYPE_SIZE])(int, char **, char **) = TYPE_FUN;
-
-	send_pwd(sson, pwd);
-	while (42)
-	{
-		type = getnexttype(sson, &av);
-		if (type == QUIT)
-			break ;
-		i = 0;
-		while (i < TYPE_SIZE)
-		{
-			if (type_enum[i] == type)
-				type_fun[i](sson, &pwd, av);
-			i++;
-		}
-	}
-	close(sson);
+	ft_putendl(client->pwd);
+	return (0);
 }

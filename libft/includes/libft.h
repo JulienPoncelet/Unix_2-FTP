@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 15:49:51 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 11:34:29 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 12:36:04 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(const char *str, int fd);
 void		ft_putendl_fd(const char *str, int fd);
 void		ft_putnbr_fd(int nbr, int fd);
+void		ft_putnbrendl_fd(int nbr, int fd);
 
 t_list		*ft_lstnew(const void *content, size_t content_size);
 void		ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 15:30:52 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/12 18:21:25 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 10:48:15 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void						loop(t_serveur *serveur)
 				return ;
 			}
 			if (!father)
-				ftp_son(sson);
+				ftp_son(sson, serveur->pwd);
 		}
 	}
 }

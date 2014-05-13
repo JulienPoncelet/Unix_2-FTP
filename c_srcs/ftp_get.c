@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_ls.c                                           :+:      :+:    :+:   */
+/*   ftp_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 13:43:29 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/13 16:44:26 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int								ftp_ls(int sson, char **pwd, char **av)
+int								c_ftp_get(t_client *client)
 {
-	DIR							*dd;
-	struct dirent				*file;
-	char						*buf;
+	char						*line;
+	char						*file;
+	int							fd;
+	char						*cat;
+	int							len;
 
-	if (!(dd = opendir(*pwd)))
-	{
-		ft_error("serveur", "ftp_ls.c", 20);
-		ft_putnbrendl_fd(FT_ERROR, sson);
+	get_next_line(client->sd, &line);
+	if (ft_atoi(line) == FT_ERROR)
 		return (FT_ERROR);
-	}
-	buf = "";
-	while ((file = readdir(dd)))
-	{
-		if (file->d_name[0] != '.')
-		{
-			buf = ft_strjoin(buf, file->d_name);
-			buf = ft_strjoin(buf, "\n");
-		}
-	}
-	ft_putnbrendl_fd(ft_strlen(buf), sson);
-	send(sson, buf, ft_strlen(buf) + 1, 0);
+	file = get_file(client->line);
+	if ((fd = open(ft_strjoin(file, "_cpy"), O_RDWR | O_CREAT, 0644)) < 0)
+		return (FT_ERROR);
+	get_next_line(client->sd, &line);
+	len = ft_atoi(line);
+	cat = (char *)malloc(sizeof(char) * (len + 1));
+	recv(client->sd, cat, len, 0);
+	cat[len] = 0;
+	ft_putstr_fd(cat, fd);
 	return (0);
-	(void)av;
+}
+
+char							*get_file(char *line)
+{
+	char						**split;
+
+	split = ft_strsplit(line, " ");
+	return (split[1]);
 }

@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_son.c                                          :+:      :+:    :+:   */
+/*   ftp_ls.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 17:07:17 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 13:46:18 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/13 12:38:55 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-void					ftp_son(int sson, char *pwd)
+int								c_ftp_ls(t_client *client)
 {
-	int					type;
-	char				**av;
-	int					i;
-	int					type_enum[TYPE_SIZE] = TYPE_ENUM;
-	int					(*type_fun[TYPE_SIZE])(int, char **, char **) = TYPE_FUN;
+	char						*line;
+	int							len;
+	char						*buf;
 
-	send_pwd(sson, pwd);
-	while (42)
-	{
-		type = getnexttype(sson, &av);
-		if (type == QUIT)
-			break ;
-		i = 0;
-		while (i < TYPE_SIZE)
-		{
-			if (type_enum[i] == type)
-				type_fun[i](sson, &pwd, av);
-			i++;
-		}
-	}
-	close(sson);
+	get_next_line(client->sd, &line);
+	len = ft_atoi(line);
+	if (len == FT_ERROR)
+		return (FT_ERROR);
+	buf = (char *)malloc(sizeof(char) * (len + 1));
+	recv(client->sd, buf, len + 1, 0);
+	ft_putstr(buf);
+	free(buf);
+	return (0);
 }
