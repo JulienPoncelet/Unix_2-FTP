@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 17:29:42 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 10:50:27 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:35:30 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int							getnexttype(int sson, char ***av)
 
 	if (get_next_line(sson, &line) == -1)
 		return (ft_error("serveur", "getnexttype.c", 20));
-	split = ft_strsplit(line, " ");
+	line = ft_strtrim(line);
+	split = ft_strsplit(line, " \t");
 	type = get_type(split[0]);
 	*av = ++split;
 	return (type);

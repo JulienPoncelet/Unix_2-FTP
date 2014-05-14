@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/13 12:35:47 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/14 12:08:47 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ SRC = ft_memset.c\
 	  ft_ctabjoin.c\
 	  ft_ctabaddtoindex.c\
 	  ft_getopt2.c\
-	  ft_error.c
+	  ft_error.c\
+	  ft_filelen.c
 
 OBJ = $(SRC:.c=.o)
 

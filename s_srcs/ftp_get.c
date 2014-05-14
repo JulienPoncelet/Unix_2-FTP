@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 10:50:13 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:21:00 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int								ftp_get(int sson, char **pwd, char **av)
 {
 	int							fd;
-	char						buf[2];
-	int							ret;
-	char						*cat;
+	char						*file;
+	int							len;
 
 	if (!av[0] || !pwd)
 	{
@@ -30,13 +29,10 @@ int								ftp_get(int sson, char **pwd, char **av)
 		return (FT_ERROR);
 	}
 	ft_putnbrendl_fd(0, sson);
-	cat = "";
-	while ((ret = read(fd, buf, 1)) > 0)
-	{
-		buf[ret] = 0;
-		cat = ft_strjoin(cat, buf);
-	}
-	ft_putnbrendl_fd(ft_strlen(cat), sson);
-	send(sson, cat, ft_strlen(cat), 0);
+	len = ft_filelen(fd);
+	fd = open(av[0], O_RDWR, 0644);
+	ft_putnbrendl_fd(len, sson);
+	file = (char *)mmap(0, len, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
+	send(sson, file, len, 0);
 	return (0);
 }

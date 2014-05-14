@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 12:03:11 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:21:02 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int								c_ftp_get(t_client *client)
 	char						*line;
 	char						*file;
 	int							fd;
-	char						*cat;
+	char						*file_recv;
 	int							len;
 
 	get_next_line(client->sd, &line);
@@ -28,10 +28,9 @@ int								c_ftp_get(t_client *client)
 		return (FT_ERROR);
 	get_next_line(client->sd, &line);
 	len = ft_atoi(line);
-	cat = (char *)malloc(sizeof(char) * (len + 1));
-	recv(client->sd, cat, len, 0);
-	cat[len] = 0;
-	ft_putstr_fd(cat, fd);
+	file_recv = (char *)malloc(sizeof(char) * (len + 1));
+	recv(client->sd, file_recv, len, 0);
+	write(fd, file_recv, len);
 	return (0);
 }
 

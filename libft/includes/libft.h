@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 15:49:51 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 12:36:04 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:09:11 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ char		**ft_ctabaddtoindex(char **ctab, char **to_add, int i, int j);
 int			ft_getopt(char **cmd, char **tab, char *valid_opt, char *error);
 
 int			ft_error(char *bin, char *file, int line);
+int			ft_filelen(int fd);
 
 #endif

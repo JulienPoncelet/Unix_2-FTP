@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 12:01:59 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:32:43 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int								ftp_put(int sson, char **pwd, char **av)
 	char						*line;
 	char						*file;
 	int							fd;
-	char						*cat;
+	char						*file_recv;
 	int							len;
 
 	if (!av[0] || !pwd)
@@ -33,11 +33,11 @@ int								ftp_put(int sson, char **pwd, char **av)
 	}
 	ft_putnbrendl_fd(0, sson);
 	get_next_line(sson, &line);
-	len = ft_atoi(line);
-	cat = (char *)malloc(sizeof(char) * (len + 1));
-	recv(sson, cat, len, 0);
-	cat[len] = 0;
-	ft_putstr_fd(cat, fd);
+	if ((len = ft_atoi(line)) == -1)
+		return (FT_ERROR);
+	file_recv = (char *)malloc(sizeof(char) * (len + 1));
+	recv(sson, file_recv, len, 0);
+	write(fd, file_recv, len);
 	return (0);
 }
 

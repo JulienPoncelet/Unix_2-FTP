@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/11 20:14:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 12:03:42 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:35:48 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <arpa/inet.h>
 # include <dirent.h>
 # include <fcntl.h>
+# include <sys/mman.h>
 
 # define WHITE			"\033[0m"
 # define RED			"\033[31m"
