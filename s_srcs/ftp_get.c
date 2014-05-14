@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:45:11 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 10:50:13 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int								ftp_get(int sson, char **pwd, char **av)
 
 	if (!av[0] || !pwd)
 	{
-		ft_putnbrendl_fd(FT_ERROR, sson);
+		ft_putnbrendl_fd(GET_ARG, sson);
 		return (FT_ERROR);
 	}
 	if ((fd = open(av[0], O_RDWR, 0644)) < 0)
 	{
-		ft_putnbrendl_fd(FT_ERROR, sson);
+		ft_putnbrendl_fd(GET_OPEN, sson);
 		return (FT_ERROR);
 	}
 	ft_putnbrendl_fd(0, sson);

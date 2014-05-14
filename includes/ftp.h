@@ -6,13 +6,14 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/11 20:14:29 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:55:20 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:03:42 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTP_H
 # define FTP_H
 
+# include <error.h>
 # include <libft.h>
 # include <get_next_line.h>
 # include <netdb.h>
@@ -36,8 +37,6 @@
 # define TYPE			SOCK_STREAM
 # define FAMILY			AF_INET
 # define BACKLOG		42
-
-# define BUF_READ		1
 
 enum					e_type
 {
@@ -64,6 +63,7 @@ typedef struct			s_client
 	int					port;
 	char				*pwd;
 	char				*line;
+	int					lvl;
 }						t_client;
 
 /*
@@ -136,7 +136,7 @@ int						get_type(char *cmd);
 
 int						ftp_ls(int sson, char **pwd, char **av);
 int						ftp_cd(int sson, char **pwd, char **av);
-char					*parse_pwd(char *src, char *dst);
+char					*parse_pwd(char *src, char *dst, int *lvl);
 char					*delete_last(char *pwd);
 int						ftp_get(int sson, char **pwd, char **av);
 char					*get_file(char *line);
@@ -171,7 +171,9 @@ void					launch(int (*f)(t_client *), t_client *client);
 int						c_ftp_ls(t_client *client);
 int						c_ftp_cd(t_client *client);
 int						c_ftp_get(t_client *client);
+int						put_get_error(int code);
 int						c_ftp_put(t_client *client);
+int						put_error_put(int code);
 int						c_ftp_pwd(t_client *client);
 
 #endif

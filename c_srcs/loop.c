@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 20:45:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:53:31 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 12:02:03 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ void						launch(int (*f)(t_client *), t_client *client)
 	if (!error)
 	{
 		ft_putstr(GREEN);
-		ft_putendl("\n-SUCCESS\n");
+		ft_putendl("\n-SUCCESS");
 	}
-	else
-	{
-		ft_putstr(RED);
-		ft_putendl("\n-ERROR\n");
-	}
+	ft_putchar('\n');
 }

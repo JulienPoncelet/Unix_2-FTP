@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 18:25:22 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 13:43:29 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 11:01:03 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int								ftp_ls(int sson, char **pwd, char **av)
 
 	if (!(dd = opendir(*pwd)))
 	{
-		ft_error("serveur", "ftp_ls.c", 20);
-		ft_putnbrendl_fd(FT_ERROR, sson);
+		ft_putnbrendl_fd(LS_OPEN, sson);
 		return (FT_ERROR);
 	}
 	buf = "";
@@ -35,6 +34,7 @@ int								ftp_ls(int sson, char **pwd, char **av)
 	}
 	ft_putnbrendl_fd(ft_strlen(buf), sson);
 	send(sson, buf, ft_strlen(buf) + 1, 0);
+	closedir(dd);
 	return (0);
 	(void)av;
 }

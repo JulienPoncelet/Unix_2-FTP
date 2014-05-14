@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 20:10:06 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/13 16:54:19 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/14 10:18:23 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_client						*init_client(char *addr, int port)
 	}
 	client->addr = ft_strdup(addr);
 	client->port = port;
+	client->lvl = 0;
 	return (client);
 }
 
