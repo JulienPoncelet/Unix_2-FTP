@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_pwd.c                                          :+:      :+:    :+:   */
+/*   ftp_mkdir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/13 10:09:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/18 15:16:02 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/18 15:19:08 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/18 15:44:12 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int								c_ftp_pwd(t_client *client)
+int								c_ftp_mkdir(t_client *client)
 {
-	char						**split;
-	int							i;
+	char						*line;
+	int							ret;
+	static char					*e_mkdir[2] = E_MKDIR;
 
-	split = ft_strsplit(client->pwd, "/");
-	i = 0;
-	while (split[i])
+	get_next_line(client->sd, &line);
+	ret = ft_atoi(line);
+	if (ret)
 	{
-		if (ft_strequ(split[i], ".serveur"))
-			break ;
-		i++;
+		ft_putstr(RED);
+		ft_putstr("\nERROR: ");
+		ft_putendl(e_mkdir[ret - 1]);
 	}
-	while (split[i])
-	{
-		ft_putchar('/');
-		ft_putstr(split[i]);
-		i++;
-	}
-	ft_putchar('\n');
-	return (0);
+	return (ret);
 }

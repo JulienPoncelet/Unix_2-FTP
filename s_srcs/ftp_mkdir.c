@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp_pwd.c                                          :+:      :+:    :+:   */
+/*   ftp_mkdir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/13 10:09:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/18 15:16:02 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/18 15:18:23 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/18 15:44:10 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-int								c_ftp_pwd(t_client *client)
+int								ftp_mkdir(int sson, char **pwd, char **av)
 {
-	char						**split;
-	int							i;
-
-	split = ft_strsplit(client->pwd, "/");
-	i = 0;
-	while (split[i])
+	if (!av[0])
 	{
-		if (ft_strequ(split[i], ".serveur"))
-			break ;
-		i++;
+		ft_putnbrendl_fd(MKDIR_ARG, sson);
+		return (FT_ERROR);
 	}
-	while (split[i])
+	if ((mkdir(av[0], 0755)) == -1)
 	{
-		ft_putchar('/');
-		ft_putstr(split[i]);
-		i++;
+		ft_putnbrendl_fd(MKDIR_EXIST, sson);
+		return (FT_ERROR);
 	}
-	ft_putchar('\n');
+	ft_putnbrendl_fd(0, sson);
 	return (0);
+	(void)pwd;
 }

@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/14 11:47:48 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 12:02:02 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/18 15:41:31 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,14 @@ enum					e_error_put
 # define E_PUT_ARG		"put: need 1 argument, 0 given."
 # define E_PUT_OPEN		"put: no such file."
 # define E_PUT			{E_PUT_ARG, E_PUT_OPEN}
+
+enum					e_error_mkdir
+{
+	MKDIR_EXIST = 1, MKDIR_ARG = 2
+};
+
+# define E_MKDIR_EXIST	"mkdir: repertory already exist."
+# define E_MKDIR_ARG	"mkdir: need 1 argument, 0 given."
+# define E_MKDIR		{E_MKDIR_EXIST, E_MKDIR_ARG}
 
 #endif

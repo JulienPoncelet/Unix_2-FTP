@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/13 10:46:47 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/18 15:20:41 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ S_SRC = main.c\
 		ftp_cd.c\
 		ftp_get.c\
 		ftp_put.c\
-		ftp_pwd.c
+		ftp_pwd.c\
+		ftp_mkdir.c
 
 S_OBJ = $(S_SRC:.c=.o)
 
@@ -54,7 +55,8 @@ C_SRC = main.c\
 		ftp_cd.c\
 		ftp_get.c\
 		ftp_put.c\
-		ftp_pwd.c
+		ftp_pwd.c\
+		ftp_mkdir.c
 
 C_OBJ = $(C_SRC:.c=.o)
 

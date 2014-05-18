@@ -6,19 +6,19 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 20:45:45 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/14 12:02:03 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/18 15:48:20 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ftp.h>
 
-void						loop_client(t_client *client)
+void				loop_client(t_client *client)
 {
-	int						type;
-	char					*line;
-	int						i;
-	static int				type_enum[TYPE_SIZE] = TYPE_ENUM;
-	static int				(*type_fun2[TYPE_SIZE])(t_client *) = TYPE_FUN2;
+	int				type;
+	char			*line;
+	int				i;
+	static int		type_enum[TYPE_SIZE] = TYPE_ENUM;
+	static int		(*type_fun2[TYPE_SIZE])(t_client *) = TF;
 
 	get_next_line(client->sd, &(client->pwd));
 	while (42)
@@ -29,6 +29,8 @@ void						loop_client(t_client *client)
 		client->line = ft_strdup(line);
 		if (type == QUIT)
 			break ;
+		if (type == WRONG)
+			put_wrong();
 		i = 0;
 		while (i < TYPE_SIZE)
 		{
@@ -39,7 +41,7 @@ void						loop_client(t_client *client)
 	}
 }
 
-void						print_prompt(t_client *client)
+void				print_prompt(t_client *client)
 {
 	ft_putstr(BLUE);
 	ft_putstr(client->addr);
@@ -51,9 +53,9 @@ void						print_prompt(t_client *client)
 	ft_putstr(" > ");
 }
 
-void						launch(int (*f)(t_client *), t_client *client)
+void				launch(int (*f)(t_client *), t_client *client)
 {
-	int						error;
+	int				error;
 
 	error = f(client);
 	if (!error)
@@ -62,4 +64,10 @@ void						launch(int (*f)(t_client *), t_client *client)
 		ft_putendl("\n-SUCCESS");
 	}
 	ft_putchar('\n');
+}
+
+void				put_wrong(void)
+{
+	ft_putstr(RED);
+	ft_putendl("\nERROR: wrong command.\n");
 }
